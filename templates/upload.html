@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Files Securely</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6; /* Light, calming background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Container for the upload area */
+        .upload-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        /* Heading Style */
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+
+        /* File Input Styling (Often challenging to style directly, so we focus on the surrounding container and button) */
+        input[type="file"] {
+            display: block; /* Ensures it takes full width for better alignment */
+            margin: 15px auto 30px auto;
+            border: 2px dashed #a0c4ff; /* Dashed border for a "drop zone" feel */
+            padding: 15px;
+            border-radius: 8px;
+            width: calc(100% - 30px); /* Adjusting width for padding */
+            color: #555;
+            cursor: pointer;
+        }
+
+        /* Button Styling */
+        button[type="submit"] {
+            background-color: #007bff; /* Primary action color (Blue) */
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            width: 100%; /* Full width button for prominence */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(1px); /* Little press effect */
+        }
+
+        /* Success Message Styling */
+        .success-message {
+            color: #28a745; /* Green for success */
+            background-color: #e6ffed;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 20px;
+            border-left: 5px solid #28a745; /* Highlight border */
+            font-weight: bold;
+        }
+
+        /* Visual cue for required field */
+        .required-indicator::after {
+            content: '*';
+            color: #dc3545; /* Red asterisk */
+            margin-left: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h1>Upload PDF</h1>
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <label for="file-upload" class="required-indicator" style="display: block; text-align: left; margin-bottom: 5px; color: #555;">Choose File</label>
+            <input type="file" name="file" id="file-upload" required>
+            <button type="submit">Upload File</button>
+        </form>
+
+        {% if message %}
+            <p class="success-message">{{ message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
