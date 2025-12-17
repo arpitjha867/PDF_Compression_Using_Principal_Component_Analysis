@@ -20,7 +20,7 @@ app.config['IMAGE_FOLDER_PATH'] = os.path.join(app.root_path, 'static', IMAGE_SU
 app.config['UPLOAD_FOLDER_PATH'] = os.path.join(app.root_path, UPLOAD_SUBDIR)
 app.config['COMPRESSED_FOLDER_PATH'] = os.path.join(app.root_path, COMPRESSED_SUBDIR)
 
-app.config['ALLOWED_IMAGE_EXTENSIONS'] = ('.png',)
+app.config['ALLOWED_IMAGE_EXTENSIONS'] = ('.png')
 
 # Ensure directories exist
 os.makedirs(app.config['IMAGE_FOLDER_PATH'], exist_ok=True)
@@ -111,11 +111,11 @@ def compress():
 
     try:
         # Load metadata
-        metadata = load_metadata(metadata_file)
-        print(f"✓ Loaded metadata for {len(metadata)} pages")
+        # metadata = load_metadata(metadata_file)
+        # print(f" Loaded metadata for {len(metadata)} pages")
 
         # Call compression function
-        compress_pdf_smart(input_path, output_path, metadata)
+        compress_pdf_smart(input_path, output_path)
 
         # Get file sizes for stats
         original_size = os.path.getsize(input_path)
